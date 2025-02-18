@@ -160,7 +160,7 @@ contract TestGasPriceFeesHook is Test, Deployers {
         console.log("Base Fee Output", outputFromBaseFeeSwap);
         console.log("Increased Fee Output", outputFromIncreasedFeeSwap);
         console.log("Decreased Fee Output", outputFromDecreasedFeeSwap);
-      
+
         assertGt(outputFromDecreasedFeeSwap, outputFromBaseFeeSwap);
         assertGt(outputFromBaseFeeSwap, outputFromIncreasedFeeSwap);
     }

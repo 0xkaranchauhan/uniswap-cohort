@@ -19,7 +19,7 @@ contract GasPriceFeesHook is BaseHook {
     uint104 public movingAverageGasPriceCount;
 
     // The default base fees we will charge
-    uint24 public constant BASE_FEE = 5000; // 0.5%
+    uint24 public constant BASE_FEE = 5000; // denominated in pips (one-hundredth bps) 0.5%
 
     error MustUseDynamicFee();
 
@@ -29,7 +29,7 @@ contract GasPriceFeesHook is BaseHook {
     }
 
     function getFee() internal view returns (uint24) {
-        uint24 gasPrice = uint24(tx.gasprice);
+        uint128 gasPrice = uint128(tx.gasprice);
 
         // if gasPrice > movingAverageGasPrice * 1.1, then half the fees
         if (gasPrice > (movingAverageGasPrice * 11) / 10) return BASE_FEE / 2;
@@ -84,7 +84,7 @@ contract GasPriceFeesHook is BaseHook {
         uint160
     ) internal pure override returns (bytes4) {
         // `.isDynamicFee()` function comes from using
-        // the `SwapFeeLibrary` for `uint24`
+        // the `LPFeeLibrary` for `uint24`
         if (!key.fee.isDynamicFee()) revert MustUseDynamicFee();
         return this.beforeInitialize.selector;
     }
