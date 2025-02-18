@@ -17,7 +17,7 @@ import {SqrtPriceMath} from "v4-core/libraries/SqrtPriceMath.sol";
 import {LiquidityAmounts} from "@uniswap/v4-core/test/utils/LiquidityAmounts.sol";
 
 import "forge-std/console.sol";
-import {PointsHook} from "../../src/4/PointsHook.sol";
+import {PointsHook} from "../../src/4-points-hook/PointsHook.sol";
 
 contract PointsHookTest is Test, Deployers {
     PointsHook hook;

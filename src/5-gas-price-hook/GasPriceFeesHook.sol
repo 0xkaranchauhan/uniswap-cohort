@@ -32,14 +32,10 @@ contract GasPriceFeesHook is BaseHook {
         uint24 gasPrice = uint24(tx.gasprice);
 
         // if gasPrice > movingAverageGasPrice * 1.1, then half the fees
-        if (gasPrice > (movingAverageGasPrice * 11) / 10) {
-            return BASE_FEE / 2;
-        }
+        if (gasPrice > (movingAverageGasPrice * 11) / 10) return BASE_FEE / 2;
 
         // if gasPrice < movingAverageGasPrice * 0.9, then double the fees
-        if (gasPrice < (movingAverageGasPrice * 9) / 10) {
-            return BASE_FEE * 2;
-        }
+        if (gasPrice < (movingAverageGasPrice * 9) / 10) return BASE_FEE * 2;
 
         return BASE_FEE;
     }

@@ -12,7 +12,7 @@ import {LPFeeLibrary} from "v4-core/libraries/LPFeeLibrary.sol";
 import {PoolKey} from "v4-core/types/PoolKey.sol";
 import {Hooks} from "v4-core/libraries/Hooks.sol";
 import {PoolSwapTest} from "v4-core/test/PoolSwapTest.sol";
-import {GasPriceFeesHook} from "../../src/5/GasPriceFeesHook.sol";
+import {GasPriceFeesHook} from "../../src/5-gas-price-hook/GasPriceFeesHook.sol";
 import {TickMath} from "v4-core/libraries/TickMath.sol";
 import {console} from "forge-std/console.sol";
 
@@ -160,7 +160,7 @@ contract TestGasPriceFeesHook is Test, Deployers {
         console.log("Base Fee Output", outputFromBaseFeeSwap);
         console.log("Increased Fee Output", outputFromIncreasedFeeSwap);
         console.log("Decreased Fee Output", outputFromDecreasedFeeSwap);
-
+      
         assertGt(outputFromDecreasedFeeSwap, outputFromBaseFeeSwap);
         assertGt(outputFromBaseFeeSwap, outputFromIncreasedFeeSwap);
     }
